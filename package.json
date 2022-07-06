@@ -1,0 +1,35 @@
+{
+  "name": "my-fable-extension",
+  "displayName": "my-fable-extension",
+  "description": "A starter extension for VSCode that uses Fable for compilation",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.68.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:my-fable-extension.helloWorld"
+  ],
+  "main": "./dist/Extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "my-fable-extension.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "install": "dotnet tool restore",
+    "build": "dotnet fable src -o build --run npm run esbuild",
+    "start": "dotnet fable watch src -s -o build --run npm run esbuild -- --watch",
+    "esbuild": "esbuild ./build/Extension.js --bundle --outfile=dist/Extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "prepack": "npm run build",
+    "pack": "vsce package"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.48"
+  }
+}
