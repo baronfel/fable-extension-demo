@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\node_modules\ionide-vscode-helpers\src\Fable.Import.VSCode.fs" />
     <Compile Include="Extension.fs" />
   </ItemGroup>
 
